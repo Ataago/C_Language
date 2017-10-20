@@ -1,7 +1,7 @@
 //Singly Linked List
 /*
     operations on sll
-
+ INSERT DELETE DISPALY
 */
 
 #include<stdio.h>

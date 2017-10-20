@@ -1,4 +1,5 @@
 // operations on stack
+//push pop and display
 
 #include<stdio.h>
 #include<process.h>

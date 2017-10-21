@@ -1,10 +1,4 @@
 //Doubly Linked List
-
-/*
-    Tips
-    dont define data type as a pointer
-    it casues malloc error in heap
-*/
 #include<stdio.h>
 #include<conio.h>
 #include<process.h>
@@ -15,8 +9,8 @@ struct node
     int data;
     struct node *prev, *next;
 };
-typedef struct node Node;
-Node *First = NULL;
+typedef struct node node;
+node *First = NULL;
 
 void InsertBeg();
 void InsertEnd();
@@ -70,13 +64,14 @@ void main()
 }
 void InsertBeg()
 {
-    Node *temp;
-    temp = (Node*)malloc(sizeof(Node));
-    if(!temp)  //check memory error
-     {
-         printf("Memory Error");
-         return;
-     }
+    node *temp;
+    temp = (node*) malloc(sizeof(node));
+
+    if(temp == NULL){
+        printf("NULL");
+        return;
+    }
+
     temp->prev = NULL;
     temp->next = NULL;
     printf("Enter Element: ");
@@ -91,8 +86,8 @@ void InsertBeg()
 }
 void InsertEnd()
 {
-    Node *cur, *temp;
-    temp = (Node*)malloc(sizeof(Node));
+    node *cur, *temp;
+    temp = (node*)malloc(sizeof(node));
     printf("Enter Element: ");
     scanf("%d",&temp->data);
     temp->next = NULL;
@@ -116,7 +111,7 @@ void InsertKey()
         printf("Underflow");
         return;
     }
-    Node *temp, *cur = First;
+    node *temp, *cur = First;
     int key;
     printf("Enter Key element: ");
     scanf("%d",&key);
@@ -129,7 +124,7 @@ void InsertKey()
     {
         if(cur->data == key)
         {
-            temp = (Node*)malloc(sizeof(Node));
+            temp = (node*)malloc(sizeof(node));
             printf("Enter Element:");
             scanf("%d",&temp->data);
             temp->next = cur;
@@ -149,7 +144,7 @@ void DeleteBeg()
         printf("Underflow");
         return;
     }
-    Node *cur = First;
+    node *cur = First;
     printf("Deleted %d",cur->data);
     if(!cur->next)
     {
@@ -163,7 +158,7 @@ void DeleteBeg()
 }
 void DeleteEnd()
 {
-    Node *cur = First;
+    node *cur = First;
     if(!First)
     {
         printf("Underflow");
@@ -189,7 +184,7 @@ void DeleteKey()
         printf("Underflow");
         return;
     }
-    Node *cur = First;
+    node *cur = First;
     int key;
     printf("Enter Key: ");
     scanf("%d",&key);
@@ -220,7 +215,7 @@ void Display()
         printf("Underflow");
         return;
     }
-    Node *cur=First;
+    node *cur=First;
     while(cur/*->next*/)
     {
          printf("%d ",cur->data);

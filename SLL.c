@@ -20,6 +20,7 @@
  void InsertEnd();
  void Display();
  void DeleteEnd();
+ void DeleteBeg();
 
  void main()
  {
@@ -29,7 +30,7 @@
 
      while(1)
      {
-        printf("\n 1-Insert front 2-Insert End 3-Display:");
+        printf("\n 1-Insert front 2-Insert End 3-Display 4-DeleteEnd 5-DeleteBeg 0-Exit:");
         scanf("%d",&ch);
 
         switch(ch)
@@ -43,7 +44,13 @@
             case 3:
                 Display();
                 break;
-            case 10:
+            case 4:
+                DeleteEnd();
+                break;
+            case 5:
+                DeleteBeg();
+                break;
+            case 0:
                 printf("Exit");
                 exit(0);
                 break;
@@ -58,10 +65,20 @@
  {
      Node temp;
      temp = (Node)malloc(sizeof(Node));
+     temp->link = NULL;
 
      printf("Insert Element:");
      scanf("%d",&temp->data);
 
+     if(First)
+        temp->link = First;
+     First = temp;
+     /*
+     if(!temp)  //check memory error
+     {
+         printf("Memory Error");
+         return;
+     }
      if(First == NULL)
      {
             temp->link = NULL;
@@ -70,6 +87,8 @@
      }
      temp->link = First;
      First = temp;
+     */
+
  }
 
  void InsertEnd()
@@ -81,13 +100,13 @@
      printf("Enter the Element:");
      scanf("%d",&temp->data);
 
-     if(First == NULL)
+     if(!First)
      {
          First = temp;
          return;
      }
      cur = First;
-     while(cur->link != NULL) //syntax error
+     while(cur->link /* != NULL */) //syntax error
         cur = cur->link;
      cur->link = temp;
  }
@@ -96,7 +115,7 @@
  {
      Node cur;
      cur = First;
-     if(First == NULL)
+     if(!First /*== NULL*/)
      {
          printf("Underflow");
          return;
@@ -107,4 +126,51 @@
          cur = cur->link;
      }
      printf("%d",cur->data);
+ }
+
+ void DeleteEnd()
+ {
+     Node temp,cur;
+     if(First == NULL)
+     {
+         printf("Underflow");
+         return;
+     }
+     cur = First;
+     if(cur->link == NULL)
+     {
+         printf("Deleted %d",cur->data);
+         free(cur);
+         First=NULL;
+         return;
+     }
+     while(cur->link->link != NULL)
+        cur = cur->link;
+     temp = cur->link;
+     printf("Deleted %d",temp->data);
+     free(temp);
+     cur->link = NULL;
+ }
+
+ void DeleteBeg()
+ {
+     Node cur,temp;
+     if(First == NULL)
+     {
+         printf("Underflow");
+         return;
+     }
+     cur = First;
+     if(cur->link == NULL)
+     {
+         printf("Deleted %d",cur->data);
+         free(cur);
+         First = NULL;
+         return;
+     }
+     temp = cur;
+     cur = cur->link;
+     printf("Deleted %d",temp->data);
+     free(temp);
+     First = cur;
  }

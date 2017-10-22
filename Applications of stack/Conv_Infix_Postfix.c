@@ -1,15 +1,17 @@
+// Converstion of INFIX to POSTFIX
 #include<stdio.h>
 #include<conio.h>
+#include<process.h>
 #include<string.h>
 
-char stack[20];
-int top=-1;
+char stack[30];
+int top = -1;
 
-void push(char item)
+void push(char symbol)
 {
-    stack[++top]=item;
+    stack[++top] = symbol;
 }
-char pop()                                                                           //int pop()
+char pop()
 {
     return(stack[top--]);
 }
@@ -23,45 +25,41 @@ int priority(char symbol)
         return(3);
     if(symbol == '$' || symbol == '^')
         return(4);
+    printf("invalid Expression");
+    exit(0);
 }
-
 void main()
 {
-    char post[20],infix[20];
-    int i=0,j=0;
+    char infix[30], postfix[30];
+    int i,j=0;
 
-    printf("Enter valid infix: ");
+    printf("Enter valid infix Expression: ");
     gets(infix);
 
-    push('#');                                                                      //void push('#')
-
-    for(i=0;i<strlen(infix);i++)
+    push('#');
+    for(i=0; i<strlen(infix); i++)
     {
         if(isalnum(infix[i]))
-            post[j++]=infix[i];
-
-        else if(infix[i]=='(')
+            postfix[j++] = infix[i];
+        else if(infix[i] == '(')
             push(infix[i]);
-
-        else if(infix[i]==')')
+        else if(infix[i] == ')')
         {
-            while(stack[top]!='(')
-                    post[j++] = pop();
-            pop();
+            while(stack[top] != '(')
+                  postfix[j++] = pop();
+             pop();
         }
-
         else
         {
-            while(priority(stack[top])>=priority(infix[i]))
-                post[j++]=pop();
+            while(priority(stack[top]) >= priority(infix[i]))
+                postfix[j++] = pop();
             push(infix[i]);
         }
     }
-    while(stack[top]!='#')
-        post[j++]=pop();
-    post[j]='\0';
+    while(stack[top] != '#')
+        postfix[j++] = pop();
+    postfix[j] = '\0';
 
-    printf("\n\nPostfix is : ");
-    puts(post);
-
+    printf("\n Postfix Expression: ");
+    puts(postfix);
 }

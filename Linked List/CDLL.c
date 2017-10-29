@@ -1,4 +1,4 @@
-//Doubly Linked List
+//Circular Doubly Linked List
 
 /*
     Tips
@@ -19,11 +19,11 @@ typedef struct node Node;
 Node *First = NULL;
 
 void InsertBeg();
-void InsertEnd();
-void InsertKey();
+//void InsertEnd();
+//void InsertKey();
 void DeleteBeg();
-void DeleteEnd();
-void DeleteKey();
+//void DeleteEnd();
+//void DeleteKey();
 void Display();
 
 void main()
@@ -41,22 +41,22 @@ void main()
                 InsertBeg();
                 break;
             case 2:
-                InsertEnd();
+                //InsertEnd();
                 break;
             case 3:
-                InsertKey();
+                //InsertKey();
                 break;
             case 7:
                 Display();
                 break;
             case 5:
-                DeleteEnd();
+                //DeleteEnd();
                 break;
             case 4:
                 DeleteBeg();
                 break;
             case 6:
-                DeleteKey();
+                //DeleteKey();
                 break;
             case 0:
                 printf("Exit");
@@ -70,25 +70,61 @@ void main()
 }
 void InsertBeg()
 {
-    Node *temp;
+    Node *temp,*last;
     temp = (Node*)malloc(sizeof(Node));
-    if(!temp)  //check memory error
-     {
-         printf("Memory Error");
-         return;
-     }
     temp->prev = NULL;
     temp->next = NULL;
     printf("Enter Element: ");
     scanf("%d",&temp->data);
-
-    if(First)
+    if(!First)
     {
-        temp->next = First;
-        First->prev = temp;
+        temp->next = temp;
+        temp->prev = temp;
+        First = temp;
     }
+    last = First->prev;
+    temp->next = First;
+    temp->prev = last;
+    First->prev = temp;
+    last->next = temp;
     First = temp;
 }
+void DeleteBeg()
+{
+    if(!First)
+    {
+        printf("Underflow");
+        return;
+    }
+    Node *last = First->prev;
+    Node *cur = First;
+    printf("Deleted %d",cur->data);
+    if(First == last)
+    {
+        First = NULL;
+        free(First);
+        return;
+    }
+    cur->next->prev = last;
+    last->next = cur->next;
+    First = cur->next;
+    free(cur);
+}
+void Display()
+{
+    if(!First)
+    {
+        printf("Underflow");
+        return;
+    }
+    Node *cur=First;
+    do
+    {
+         printf("%d ",cur->data);
+         cur = cur->next;
+    }while(cur != First);
+}
+/*
 void InsertEnd()
 {
     Node *cur, *temp;
@@ -142,25 +178,9 @@ void InsertKey()
     }
     printf("Key not found");
 }
-void DeleteBeg()
-{
-    if(!First)
-    {
-        printf("Underflow");
-        return;
-    }
-    Node *cur = First;
-    printf("Deleted %d",cur->data);
-    if(!cur->next)
-    {
-        First = NULL;
-        free(cur);
-        return;
-    }
-    cur->next->prev = NULL;
-    First = cur->next;
-    free(cur);
-}
+*/
+
+/*
 void DeleteEnd()
 {
     Node *cur = First;
@@ -203,7 +223,7 @@ void DeleteKey()
         if(cur->data == key)
         {
             if(cur->next)
-                cur->next->prev = cur->prev;
+                cur->next->prev = cur->prev;            //excludes the last list
             cur->prev->next = cur->next;
             printf("Deleted %d",cur->data);
             free(cur);
@@ -213,18 +233,5 @@ void DeleteKey()
     }
     printf("Key not Found");
 }
-void Display()
-{
-    if(!First)
-    {
-        printf("Underflow");
-        return;
-    }
-    Node *cur=First;
-    while(cur/*->next*/)
-    {
-         printf("%d ",cur->data);
-         cur = cur->next;
-    }
-    //printf("%d",cur->data);
-}
+*/
+

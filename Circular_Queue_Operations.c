@@ -3,7 +3,8 @@
 #include<stdio.h>
 #include<process.h>
 
-#define Max 4
+#define Max 5
+#define Max 5
 int queue[Max];
 int front = 0, rear = -1, c=0;
 

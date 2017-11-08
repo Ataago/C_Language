@@ -221,7 +221,7 @@ void Display()
         return;
     }
     Node *cur=First;
-    while(cur/*->next*/)
+    while(cur != NULL/*->next*/)
     {
          printf("%d ",cur->data);
          cur = cur->next;

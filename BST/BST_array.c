@@ -13,7 +13,7 @@ void bst(int ele)
     cur=0;
     while(a[cur] != NULL)
     {
-        if(ele < a[cur])
+        if(ele <= a[cur])
             cur = 2*cur + 1;
         else
             cur = 2*cur + 2;

@@ -61,7 +61,7 @@ tnode *createBST(tnode *root, int ele)
     }
     else
     {
-        if(ele < root->data)
+        if(ele <= root->data)
             root->l = createBST(root->l,ele);
         else if(ele> root->data)
                root->r = createBST(root->r, ele);

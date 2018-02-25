@@ -5,6 +5,7 @@
 #include<stdio.h>
 #include<conio.h>
 #include<stdlib.h>
+#include<time.h>
 //#include <cstdlib>
 
 void Merge_Sort(int a[], int low, int high);
@@ -12,24 +13,30 @@ void Merge(int a[],int low, int mid, int high);
 
 int main()
 {
-	int a[50],n,i,temp[50];
+	int a[10000],n,i,temp[10000];
+	float start,end;
 
 	printf("Enter the number of Elements: ");
 	scanf("%d",&n);
 
 	for(i = 0; i<n; i++)
-        a[i] = rand()%50;
+        a[i] = rand();
        //scanf("%d",&a[i]);
 
 	printf("Array is: ");
 	for(i=0; i<n; i++)
-		printf("%d ",a[i]);
+		//printf("%d ",a[i]);
 
+    start = clock();
     Merge_Sort(a,0,n-1);
+    end = clock();
 
 	printf("\nSorted Array is: ");
-	for(i=0; i<n; i++)
-		printf("%d ",a[i]);
+	//for(i=0; i<n; i++)
+		//printf("%d ",a[i]);
+
+    printf("\n time: %f",(end-start)/CLK_TCK);
+
 
 	return 0;
 
@@ -53,7 +60,7 @@ void Merge_Sort(int a[], int low, int high)
 
 void Merge(int a[],int low, int mid, int high)
 {
-	int i, low_right, size, temp_pos, temp[20];
+	int i, low_right, size, temp_pos, temp[10000];
 	low_right = mid + 1;
 	temp_pos = low;
 	size = high - low;      // size = n - 1

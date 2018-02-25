@@ -3,31 +3,37 @@
 #include<stdio.h>
 #include<conio.h>
 #include<stdlib.h>
+#include<time.h>
 
 void Quick_Sort(int a[], int low, int high);
 int Partition(int a[], int low, int high);
 
 int main()
 {
-	int a[100],n,i;
+	int a[100000],n,i;
+	float start,end;
 	//clrscr();
 
 	printf("Enter the number of Elements: ");
 	scanf("%d",&n);
 
 	for(i = 0; i<n; i++)
-		a[i] = rand()%50;
+		a[i] = rand()%49;
 
 	printf("Array is: ");
 	for(i=0; i<n; i++)
 		printf("%d ",a[i]);
 
+    start = clock();
 	Quick_Sort(a,0,n-1);
+    end = clock();
+
 
 	printf("\nSorted Array is: ");
 	for(i=0; i<n; i++)
 		printf("%d ",a[i]);
 
+    printf("\n time: %f",(end-start)/CLK_TCK);
 	//getch();
 	return NULL;
 }

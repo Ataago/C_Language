@@ -1,7 +1,9 @@
-//  Merge Sort
-//  Splitting the array into 2 arrays from the mid - Divide
-//  merging them in ascending order - Conquer
+/*  Merge Sort
+    Splitting the array into 2 arrays from the mid - Divide
+    merging them in ascending order - Conquer
 
+    @author Mohammed Ataaur Rahaman
+*/
 #include<stdio.h>
 #include<conio.h>
 #include<stdlib.h>

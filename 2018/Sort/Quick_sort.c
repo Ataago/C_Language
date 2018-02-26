@@ -1,4 +1,7 @@
-//Quick Sort
+/*  Quick Sort
+
+    ;@author Mohammed Ataaur Rahaman
+*/
 
 #include<stdio.h>
 #include<conio.h>

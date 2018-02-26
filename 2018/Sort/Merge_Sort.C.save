@@ -1,7 +1,9 @@
-//  Merge Sort
-//  Splitting the array into 2 arrays from the mid - Divide
-//  merging them in ascending order - Conquer
+/*  Merge Sort
+    Splitting the array into 2 arrays from the mid - Divide
+    merging them in ascending order - Conquer
 
+    @author Mohammed Ataaur Rahaman
+*/
 #include<stdio.h>
 #include<conio.h>
 #include<stdlib.h>
@@ -21,18 +23,19 @@ int main()
 
 	for(i = 0; i<n; i++)
         a[i] = rand();
+       //scanf("%d",&a[i]);
 
 	printf("Array is: ");
 	for(i=0; i<n; i++)
-		printf("%d ",a[i]);
+		//printf("%d ",a[i]);
 
     start = clock();
     Merge_Sort(a,0,n-1);
     end = clock();
 
 	printf("\nSorted Array is: ");
-	for(i=0; i<n; i++)
-		printf("%d ",a[i]);
+	//for(i=0; i<n; i++)
+		//printf("%d ",a[i]);
 
     printf("\n time: %f",(end-start)/CLK_TCK);
 

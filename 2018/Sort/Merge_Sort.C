@@ -27,15 +27,15 @@ int main()
 
 	printf("Array is: ");
 	for(i=0; i<n; i++)
-		//printf("%d ",a[i]);
+		printf("%d ",a[i]);
 
     start = clock();
     Merge_Sort(a,0,n-1);
     end = clock();
 
 	printf("\nSorted Array is: ");
-	//for(i=0; i<n; i++)
-		//printf("%d ",a[i]);
+	for(i=0; i<n; i++)
+		printf("%d ",a[i]);
 
     printf("\n time: %f",(end-start)/CLK_TCK);
 

@@ -18,6 +18,29 @@ void inorder(tnode *);
 void preorder(tnode *);
 void postorder(tnode *);
 
+void doubleorder(tnode *root)
+{
+    if (root)
+    {
+        printf("%d ", root->data);
+        doubleorder(root->l);
+        printf("%d ", root->data);
+        doubleorder(root->r);
+    }
+}
+
+void tripleorder(tnode *root)
+{
+    if (root)
+    {
+        printf("%d ", root->data);
+        tripleorder(root->l);
+        printf("%d ", root->data);
+        tripleorder(root->r);
+        printf("%d ", root->data);
+    }
+}
+
 void main()
 {
     tnode *root = NULL;

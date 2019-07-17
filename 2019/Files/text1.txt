@@ -1,0 +1,6 @@
+
+Hello World!Whats up?
+Nothing much
+
+This is a new line testing!
+now i know how to EOF a file
